@@ -1,0 +1,31 @@
+.new-bubble {
+  position: relative;
+  background-color: #fffdf1;
+  color: #4e513e;
+  padding-inline: 32px;
+  padding-block: 24px;
+  border-radius: 22px;
+  width: max-content;
+  max-width: var(--container-sm);
+  text-align: center;
+  line-height: 1.35;
+  user-select: none;
+  -webkit-user-select: none;
+  --border-color: #a3462f;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 14px;
+    border: 2px solid;
+    color: var(--border-color);
+    mask-image:
+      radial-gradient(100% 150% at top left, currentColor 0%, transparent 50%),
+      radial-gradient(
+        100% 150% at bottom right,
+        currentColor 0%,
+        transparent 50%
+      );
+  }
+}

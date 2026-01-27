@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as BoardRouteImport } from './routes/board'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Boards202601RouteImport } from './routes/boards.202601'
 
 const BoardRoute = BoardRouteImport.update({
   id: '/board',
@@ -28,35 +29,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Boards202601Route = Boards202601RouteImport.update({
+  id: '/boards/202601',
+  path: '/boards/202601',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/boards/202601': typeof Boards202601Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/boards/202601': typeof Boards202601Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/board': typeof BoardRoute
+  '/boards/202601': typeof Boards202601Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/board'
+  fullPaths: '/' | '/about' | '/board' | '/boards/202601'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/board'
-  id: '__root__' | '/' | '/about' | '/board'
+  to: '/' | '/about' | '/board' | '/boards/202601'
+  id: '__root__' | '/' | '/about' | '/board' | '/boards/202601'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BoardRoute: typeof BoardRoute
+  Boards202601Route: typeof Boards202601Route
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/boards/202601': {
+      id: '/boards/202601'
+      path: '/boards/202601'
+      fullPath: '/boards/202601'
+      preLoaderRoute: typeof Boards202601RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BoardRoute: BoardRoute,
+  Boards202601Route: Boards202601Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
