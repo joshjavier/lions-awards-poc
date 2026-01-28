@@ -14,8 +14,9 @@ if (!global._mongoClientPromise) {
 
 export const clientPromise = global._mongoClientPromise;
 
+const dbName = process.env.DBNAME;
 /** Get DB instance */
-export async function getDb(name: string = 'lions_awards') {
+export async function getDb(name: string = dbName ?? 'lions_awards') {
   const client = await clientPromise;
   return client.db(name);
 }
