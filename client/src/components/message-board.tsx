@@ -20,7 +20,7 @@ export function MessageBoard({
     <div
       ref={ref}
       className={cn(
-        'relative h-screen w-screen overflow-hidden bg-[url(/message-board-background.png)] bg-cover bg-top-right bg-no-repeat',
+        'relative h-screen w-screen overflow-hidden',
         className,
       )}
       {...props}
